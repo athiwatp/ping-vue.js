@@ -1,6 +1,7 @@
-# final-vue
+# Ping Project
 
-> A Vue.js project
+> Powered by Vue.js
+![logo](./screen.png)
 
 ## Build Setup
 
