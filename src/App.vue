@@ -3,12 +3,14 @@
     <div> <input-view :ping-url="pingUrl"></input-view> </div><br>
     <inter :time="time" :host="host" :output="output" :alive="alive"></inter>
     <div><canvas id="chart" style="width:480px; height: 300px; background-color: #111019;"></canvas></div>
+    <div class="side"><history :history-ping="historyPing"></history></div>
   </div>
 </template>
 
 <script>
 import inter from './components/interface'
 import inputView from './components/input'
+import history from './components/history'
 /* global Chart, swal */
 Chart.defaults.global.animationEasing = 'easeInOutQuad'
 Chart.defaults.global.responsive = true
@@ -30,7 +32,8 @@ export default {
   name: 'app',
   components: {
     inter,
-    inputView
+    inputView,
+    history
   },
   data () {
     return {
@@ -125,5 +128,11 @@ export default {
   text-align: center;
   color: #171820;
   margin-top: 60px;
+}
+.side {
+  position: absolute;
+    z-index: 2;
+    margin-left: 49%;
+    margin-top: -61%;
 }
 </style>
