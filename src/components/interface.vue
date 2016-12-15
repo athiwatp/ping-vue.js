@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="speedometer-container">
-      <div class="ip"> <span style="color: #e52c3d;">ISP</span>  <span> {{ myIp }} </span> </div>
+      <div class="ip"> <span style="color: red;">ISP</span>  <span> {{ myIp }} </span> </div>
       <div class="speedometer">
         <div class="inner-ring"></div>
         <div class="details">
