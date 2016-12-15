@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <!-- <span style="color: white;"> Public ip :: {{ myIp }} </span> -->
     <div> <input-view :ping-url="pingUrl"></input-view> </div><br>
-    <inter :time="time" :host="host" :output="output" :alive="alive"></inter>
+    <inter :time="time" :host="host" :output="output" :alive="alive" :my-ip="myIp"></inter>
     <div><canvas id="chart" style="width:480px; height: 300px; background-color: #111019;"></canvas></div>
     <div class="side"><history :history-ping="historyPing"></history></div>
   </div>
@@ -35,6 +36,13 @@ export default {
     inputView,
     history
   },
+  mounted () {
+    let vm = this
+    vm.publicIpAddress()
+    setTimeout(() => {
+      vm.publicIpAddress()
+    }, 7000)
+  },
   data () {
     return {
       time: 0,
@@ -42,22 +50,28 @@ export default {
       host: '',
       alive: false,
       historyPing: [],
-      pointGraph: []
+      pointGraph: [],
+      myIp: ''
     }
   },
   methods: {
     pingUrl (text) {
-      let url = { url: text }
-      this.$http.post('http://localhost:4000/ping', url).then((res) => {
-        console.log(res.body)
-      })
-      let vm = this
-      setTimeout(() => {
-        vm.getUrl()
-      }, 3000)
-      setTimeout(() => {
-        vm.graph()
-      }, 4000)
+      console.log(text)
+      if (!text.trim()) {
+        swal('Not insert link', 'Please insert Domain again ?', 'question')
+      } else if (text) {
+        let url = { url: text }
+        this.$http.post('http://localhost:4000/ping', url).then((res) => {
+          console.log(res.body)
+        })
+        let vm = this
+        setTimeout(() => {
+          vm.getUrl()
+        }, 3000)
+        setTimeout(() => {
+          vm.graph()
+        }, 4000)
+      }
     },
     getUrl () {
       this.$http.get('http://localhost:4000/api/ping').then((res) => {
@@ -115,6 +129,13 @@ export default {
       gradient.addColorStop(0.5, 'rgba(255, 0, 0, 0.25)')
       gradient.addColorStop(1, 'rgba(255, 0, 0, 0)')
       chart = new Chart(chart).Line(data)
+    },
+    publicIpAddress () {
+      let vm = this
+      this.$http.get('http://localhost:4000/api/publicip').then((res) => {
+        console.log('now public ip :::: ', res.data)
+        vm.myIp = res.data
+      })
     }
   }
 }

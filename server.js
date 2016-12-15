@@ -2,6 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()
 var ping = require('ping')
+var publicIp = require('public-ip')
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
@@ -15,7 +16,12 @@ app.set('port', (process.env.PORT || 4000))
 app.use(bodyParser.urlencoded({extended: false}))
 // data store
 var data = []
-
+app.get('/api/publicip', function (req, res) {
+  publicIp.v4().then((ip) => {
+    console.log(ip, 'type : string') // string
+    res.send(ip)
+  })
+})
 app.post('/ping', function (req, res) {
   let url = []
   url.push(req.body.url)

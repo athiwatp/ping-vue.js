@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "ping": "^0.2.1",
+    "public-ip": "^2.0.1",
     "vue": "^2.1.0",
     "vue-resource": "^1.0.3"
   },

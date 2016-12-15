@@ -1,6 +1,7 @@
 <template>
   <div>
     <section class="speedometer-container">
+      <div class="ip"> <span style="color: #e52c3d;">ISP</span>  <span> {{ myIp }} </span> </div>
       <div class="speedometer">
         <div class="inner-ring"></div>
         <div class="details">
@@ -9,7 +10,7 @@
           <p class="unit" style="color:white;">วินาท M/s</p>
         </div>
         <div class="progress"></div>
-        <button class="retry-button" style="color:white;">อีกครั้ง</button>
+        <button class="retry-button" style="color:white;">Detail</button>
         <footer>
           <div class="stat">
             <label style="color:white;">Ping</label>
@@ -29,7 +30,7 @@ export default {
     return {
     }
   },
-  props: ['time', 'host', 'output', 'alive']
+  props: ['time', 'host', 'output', 'alive', 'myIp']
 }
 </script>
 
@@ -50,13 +51,20 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	/*height: 100vh;*/
+  height: 58vh;
 	font-family: "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	line-height: 1;
 	color: #666;
 	user-select: none;
+}
+.ip {
+  color: white;
+    font-size: 33px;
+    /*float: right;*/
+    text-align: center;
 }
 /** Speedometer Styles **/
 .speedometer-container {
