@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <span style="color: white;"> Public ip :: {{ myIp }} </span> -->
     <div> <input-view :ping-url="pingUrl"></input-view> </div><br>
     <inter :time="time" :host="host" :output="output" :alive="alive" :my-ip="myIp"></inter>
     <div><canvas id="chart" style="width:480px; height: 300px; background-color: #111019;"></canvas></div>
@@ -153,7 +152,7 @@ export default {
 .side {
   position: absolute;
     z-index: 2;
-    margin-left: 49%;
-    margin-top: -61%;
+    margin-left: 34%;
+    margin-top: -57%;
 }
 </style>
